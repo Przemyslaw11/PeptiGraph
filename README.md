@@ -1,7 +1,3 @@
-Here's an updated README that includes a concise list of supported Ruff functions:
-
----
-
 # PeptiGraph: Molecular Fingerprints for Peptide Classification
 
 PeptiGraph is the source code repository for the Advanced Machine Learning course project (2024) at AGH University of Krakow. This project explores peptide classification using molecular fingerprints and compares their performance against ProtBERT embeddings and protein descriptors from PyBioMed.
@@ -74,9 +70,15 @@ alias pip='uv pip'
     .venv\Scripts\activate     # Windows
     ```
 
-3. Install project dependencies:
+3. Sync dependencies with `uv`:
     ```bash
-    pip install -r requirements.txt
+    uv sync
+    ```
+
+4. Install `pre-commit` hooks:
+    ```bash
+    pip install pre-commit
+    pre-commit install
     ```
 
 ---
