@@ -8,6 +8,7 @@ authors = [
     {name = "Kacper Sobczyk", email = "ksobczyk@student.agh.edu.pl"},
 ]
 dependencies = [
+    "pre-commit>=4.0.1",
     "python-dotenv>=1.0.1",
     "ruff>=0.9.2",
 ]
@@ -21,10 +22,7 @@ build-backend = "hatchling.build"
 packages = ["src/peptigraph"]
 
 [tool.ruff]
-# Same as Black
 line-length = 88
-
-# Exclude a variety of commonly ignored directories
 exclude = [
     ".bzr",
     ".direnv",
@@ -49,8 +47,6 @@ exclude = [
     "venv",
     "migrations",
 ]
-
-# I like Python 3.11
 target-version = "py311"
 
 [tool.ruff.format]
@@ -60,7 +56,6 @@ skip-magic-trailing-comma = false
 line-ending = "auto"
 
 [tool.ruff.lint]
-# Enable rules
 select = [
     "E",   # pycodestyle errors
     "W",   # pycodestyle warnings
@@ -77,14 +72,12 @@ select = [
     "FBT", # flake8-boolean-trap
     "B",   # flake8-bugbear
     "A",   # flake8-builtins
-    "COM", # flake8-commas
     "C4",  # flake8-comprehensions
     "DTZ", # flake8-datetime
     "T10", # flake8-debugger
     "DJ",  # flake8-django
     "EM",  # flake8-errmsg
     "EXE", # flake8-executable
-    "ISC", # flake8-implicit-str-concat
     "ICN", # flake8-import-conventions
     "G",   # flake8-logging-format
     "INP", # flake8-no-pep420
@@ -92,7 +85,6 @@ select = [
     "T20", # flake8-print
     "PYI", # flake8-pyi
     "PT",  # flake8-pytest-style
-    "Q",   # flake8-quotes
     "RSE", # flake8-raise
     "RET", # flake8-return
     "SLF", # flake8-self
@@ -109,7 +101,14 @@ select = [
     "RUF", # Ruff-specific rules
 ]
 
-# Never try to fix these violations
+# Ignore the conflicting rules
+ignore = [
+    "COM812",  # Missing trailing comma
+    "ISC001",  # Single line implicit string concatenation
+    "Q000",    # Remove quote-style enforcement
+    "Q003"     # Remove quote-style enforcement
+]
+
 unfixable = [
     "ERA", # Don't remove commented-out code
     "F841", # Don't remove unused variables
