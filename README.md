@@ -1,4 +1,4 @@
-Here’s an improved version of your README, with enhanced structure, grammar, and clarity:
+Here's an updated README that includes a concise list of supported Ruff functions:
 
 ---
 
@@ -91,6 +91,17 @@ Install Ruff for linting and formatting:
 pip install ruff
 ```
 
+### Supported Ruff Functions
+- **Code Quality Checks**: Pycodestyle, Pyflakes, McCabe, and more.
+- **Code Formatting**: Ensures consistent line length, quote styles, and trailing commas.
+- **Imports Management**: Organize and check imports (isort, flake8-tidy-imports).
+- **Type Annotations**: Validate annotations (flake8-annotations).
+- **Security**: Identify security issues (flake8-bandit).
+- **Performance**: Catch potential inefficiencies (flake8-bugbear, flake8-comprehensions).
+- **Style**: Enforce style rules (flake8-quotes, pydocstyle).
+
+For the full list of active rules, refer to the `pyproject.toml` file in this repository.
+
 ### VS Code Integration
 
 For seamless development in VS Code, create a `.vscode/settings.json` file with the following configuration:
@@ -137,4 +148,4 @@ ruff check --fix .
 - **UV Documentation**: [UV Package Manager](https://github.com/astral-sh/uv)  
 - **Ruff Documentation**: [Ruff Python Linter](https://docs.astral.sh/ruff/)
 
----
+--- 
