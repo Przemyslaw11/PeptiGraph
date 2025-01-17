@@ -8,6 +8,7 @@ authors = [
     {name = "Kacper Sobczyk", email = "ksobczyk@student.agh.edu.pl"},
 ]
 dependencies = [
+    "numpy>=1.26.4",
     "pre-commit>=4.0.1",
     "python-dotenv>=1.0.1",
     "ruff>=0.9.2",
