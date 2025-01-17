@@ -18,4 +18,14 @@ logging.basicConfig(
     ],
 )
 
-logger = logging.getLogger("PeptiGraph")
+
+def get_logger(name: str) -> logging.Logger:
+    """Get a logger instance with the specified name.
+
+    Args:
+        name: Name of the logger.
+
+    Returns:
+        Configured logger instance.
+    """
+    return logging.getLogger(name)

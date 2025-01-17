@@ -11,6 +11,8 @@ dependencies = [
     "pre-commit>=4.0.1",
     "python-dotenv>=1.0.1",
     "ruff>=0.9.2",
+    "scikit-fingerprints>=1.12.0",
+    "scikit-learn>=1.6.1",
 ]
 requires-python = ">=3.11"
 
