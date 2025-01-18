@@ -1,44 +1,71 @@
 # PeptiGraph: Molecular Fingerprints for Peptide Classification
 
-PeptiGraph is the source code repository for the Advanced Machine Learning course project (2024) at AGH University of Krakow. This project explores peptide classification using molecular fingerprints and compares their performance against ProtBERT embeddings and protein descriptors from PyBioMed.
+PeptiGraph is the source code repository for the Advanced Machine Learning course project (2024) at AGH University of Krakow. This project explores peptide classification using molecular fingerprints and compares their performance against ProtBERT embeddings.
 
 ## Overview
 
 Peptides are small proteins that play critical roles in living organisms. Like larger proteins, they often serve multiple functions that influence their higher-level properties. Due to their relatively small size, peptides are computationally efficient to process compared to larger proteins.
 
-Traditionally, peptides have not been extensively analyzed as molecular graphs. Instead, sequence-based algorithms dominate peptide analysis. This project aims to evaluate whether molecular fingerprints—a low-level, detailed graph representation—can effectively classify peptides and how this approach compares to established methods such as ProtBERT and PyBioMed descriptors.
+Traditionally, peptides have not been extensively analyzed as molecular graphs. Instead, sequence-based algorithms dominate peptide analysis. This project aims to evaluate whether molecular fingerprints—a low-level, detailed graph representation—can effectively classify peptides and how this approach compares to established methods such as ProtBERT.
 
 ## Project Goals
 
-1. **Dataset Collection**  
-   Gather datasets suitable for peptide classification.
-   
-2. **Fingerprint Analysis**  
-   Evaluate molecular fingerprints (using the `scikit-fingerprints` library) for peptide classification.
-   
-3. **Performance Comparison**  
-   Benchmark molecular fingerprints against ProtBERT embeddings and PyBioMed descriptors.
-
-## Expected Outcomes
-
-- A comprehensive evaluation of molecular fingerprints for peptide classification.
-- Comparative insights into the performance of ProtBERT and PyBioMed descriptors.
+1. **Dataset Collection**: Gather and process diverse peptide datasets for classification tasks
+2. **Fingerprint Analysis**: Evaluate molecular fingerprints using the `scikit-fingerprints` library
+3. **Performance Comparison**: Benchmark molecular fingerprints against ProtBERT embeddings
 
 ## Datasets
 
-The following datasets are utilized for classification tasks:
+### 1. HemoPI Datasets (1-3)
+- Source: [HemoPI Database](https://webs.iiitd.edu.in/raghava/hemopi/datasets.php)
+- Publication: [Nature Scientific Reports](https://www.nature.com/articles/srep22843)
+- ProtBERT Performance:
+  - HemoPI-1: AUROC: 0.975, AUPRC: 0.978
+  - HemoPI-2: AUROC: 0.831, AUPRC: 0.811
+  - HemoPI-3: AUROC: 0.862, AUPRC: 0.853
+ 
+### 2. Bioactive Peptides Dataset
+- Notable for fingerprints outperforming ProtBERT
+- Best fingerprint combination (ECFP + TT + AP): AUROC: 90.41%, AUPRC: 95.23%
+- ProtBERT Performance: AUROC: 0.755, AUPRC: 0.743
 
-1. **Peptides-struct and Peptides-func**  
-   From the Long Range Graph Benchmark ([arXiv link](https://arxiv.org/abs/2206.08164)).
-   
-2. **HemoPI Datasets (1-3)**  
-   Accessible via [HemoPI](https://webs.iiitd.edu.in/raghava/hemopi/datasets.php) and related publications ([Nature article](https://www.nature.com/articles/srep22843)).
+### 3. Grampa Dataset
+- ProtBERT Performance: AUROC: 0.863, AUPRC: 0.866
+- Best fingerprint combination: ECFP + MACCS + AP + Layered (AUROC: 75.58%, AUPRC: 80.69%)
 
----
+### 4. Versa Dataset
+- Perfect performance achieved with ProtBERT (AUROC: 1.000, AUPRC: 1.000)
+- Best fingerprint performance: Topological Torsion (TT) with AUROC: 80.12%, AUPRC: 64.00%
+
+## Fingerprint Configurations
+
+### Single Fingerprints
+- ECFP (Extended Connectivity Fingerprints)
+- MACCS (Molecular ACCess System)
+- TT (Topological Torsion)
+- AP (Atom Pairs)
+- Layered
+
+### Combinations
+- Two Fingerprint Combinations
+- Three Fingerprint Combinations
+- Four Fingerprint Combinations
+
+## Key Findings
+
+### Molecular Fingerprints Performance
+- TT fingerprint consistently outperformed other single configurations
+- AP fingerprint showed strong performance in HemoPI and Bioactive Peptides datasets
+- Combining multiple fingerprints often improved performance
+- Best combinations: TT + Layered, ECFP + TT + AP
+
+### ProtBERT vs Fingerprints
+- ProtBERT excelled in sequence-level analysis
+- Fingerprints captured crucial low-level structural details
+- Dataset characteristics significantly impacted relative performance
+- Combined approaches showed promise for future research
 
 ## Local Development Setup
-
-Follow these steps to set up the project for local development.
 
 ### Prerequisites
 
@@ -81,8 +108,6 @@ alias pip='uv pip'
     pre-commit install
     ```
 
----
-
 ## Code Quality and Development Tools
 
 ### Linter and Formatter
@@ -94,19 +119,17 @@ pip install ruff
 ```
 
 ### Supported Ruff Functions
-- **Code Quality Checks**: Pycodestyle, Pyflakes, McCabe, and more.
-- **Code Formatting**: Ensures consistent line length, quote styles, and trailing commas.
-- **Imports Management**: Organize and check imports (isort, flake8-tidy-imports).
-- **Type Annotations**: Validate annotations (flake8-annotations).
-- **Security**: Identify security issues (flake8-bandit).
-- **Performance**: Catch potential inefficiencies (flake8-bugbear, flake8-comprehensions).
-- **Style**: Enforce style rules (flake8-quotes, pydocstyle).
-
-For the full list of active rules, refer to the `pyproject.toml` file in this repository.
+- **Code Quality Checks**: Pycodestyle, Pyflakes, McCabe, and more
+- **Code Formatting**: Ensures consistent line length, quote styles, and trailing commas
+- **Imports Management**: Organize and check imports (isort, flake8-tidy-imports)
+- **Type Annotations**: Validate annotations (flake8-annotations)
+- **Security**: Identify security issues (flake8-bandit)
+- **Performance**: Catch potential inefficiencies (flake8-bugbear, flake8-comprehensions)
+- **Style**: Enforce style rules (flake8-quotes, pydocstyle)
 
 ### VS Code Integration
 
-For seamless development in VS Code, create a `.vscode/settings.json` file with the following configuration:
+Create `.vscode/settings.json`:
 
 ```json
 {
@@ -121,33 +144,24 @@ For seamless development in VS Code, create a `.vscode/settings.json` file with 
 }
 ```
 
----
-
 ## Common Commands
 
-### Run Linter
-Check code quality using Ruff:
+### Linting and Formatting
 ```bash
+# Check code quality
 ruff check .
-```
 
-### Format Code
-Automatically format code:
-```bash
+# Format code
 ruff format .
-```
 
-### Lint and Fix
-Lint and fix issues in one command:
-```bash
+# Lint and fix
 ruff check --fix .
 ```
 
----
-
 ## References
-
-- **UV Documentation**: [UV Package Manager](https://github.com/astral-sh/uv)  
-- **Ruff Documentation**: [Ruff Python Linter](https://docs.astral.sh/ruff/)
-
---- 
+- [UV Package Manager Documentation](https://github.com/astral-sh/uv)
+- [Ruff Documentation](https://docs.astral.sh/ruff/)
+- [scikit-fingerprints package](https://github.com/scikit-fingerprints/scikit-fingerprints)
+- [HemoPI Database](https://webs.iiitd.edu.in/raghava/hemopi/datasets.php)
+- [Long Range Graph Benchmark](https://arxiv.org/abs/2206.08164)
+- [HemoPI Nature Publication](https://www.nature.com/articles/srep22843)
